@@ -12,7 +12,7 @@ sub_dict = {
 }
 
 # function to gen all possible substitution
-def getAllSubstistution(password):
+def getAllSubstitution(password):
   all_sub = [""]
 
   for c in password:
@@ -50,7 +50,7 @@ for line in f_lines:
     continue
   
   # gen all possible password combination
-  pass_combi = getAllSubstistution(line)
+  pass_combi = getAllSubstitution(line)
 
 
   for password in pass_combi:
@@ -84,7 +84,7 @@ hash_sha1_table = dict()
 for line in f_lines:
   
   # gen all possible password combination
-  pass_combi = getAllSubstistution(line)
+  pass_combi = getAllSubstitution(line)
 
   for password in pass_combi:
     hashed_val = hashlib.sha1(password.encode()).hexdigest()
@@ -104,15 +104,12 @@ entries = 0
 f = open("10k_common_password.txt", "r")
 f_lines = f.read().splitlines()
 
-# create hash table
-hash_sha1_table = dict()
 all_gen_password = [""]
 
-# construct hash table
 for line in f_lines:
   
   # gen all possible password combination
-  pass_combi = getAllSubstistution(line)
+  pass_combi = getAllSubstitution(line)
   all_gen_password += pass_combi
 
 # start timer
@@ -122,5 +119,6 @@ for password in all_gen_password:
   hashed_val = hashlib.sha1(password.encode()).hexdigest()
 
 time_used = time.time() - start_time
+
 print("all_gen_password length = ", len(all_gen_password))
 print("Average time used (μs): ", time_used * 1e6 / len(all_gen_password))
